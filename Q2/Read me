@@ -1,0 +1,20 @@
+Question B
+
+The goal of this question is to write a software library that accepts 2 version string as input and returns whether one
+is greater than, equal, or less than the other. As an example: “1.2” is greater than “1.1”. 
+Please provide all test cases you could think of.
+
+Strategy: 
+Two version strings may have a delimiter other than '.', for example 1-1, so at first the function handles these cases,
+and replace any other possible delimiter with '.' .
+
+Then split the two strings by '.' to be able to compare their elements.
+
+If two strings do not have the same length, like: 1.2 and 1.2.2, insert zero to the shortest string such that 
+they have the same length.
+
+Compare two strings element by element, the minute an element of the first version is greater or less than the 
+corresponding element in the other version, it means the first version is greater or less than the other version,
+else two versions are equal.
+
+The function also works if the versions are indicated by alphabet insted of numbers like: a.b and a.b.c
