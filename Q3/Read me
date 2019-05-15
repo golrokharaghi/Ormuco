@@ -4,3 +4,35 @@ At Ormuco, we want to optimize every bits of software we write. Your goal is to 
 to the Ormuco stack. Dealing with network issues everyday, latency is our biggest problem. Thus, your challenge is to write
 a new Geo Distributed LRU (Least Recently Used) cache with time expiration. This library will be used extensively by many
 of our services so it needs to meet the following criteria:
+
+1 - Simplicity. Integration needs to be dead simple.
+
+2 - Resilient to network failures or crashes.
+
+3 - Near real time replication of data across Geolocation. Writes need to be in real time.
+
+4 - Data consistency across regions
+
+5 - Locality of reference, data should almost always be available from the closest region
+
+6 - Flexible Schema
+
+7 - Cache can expire 
+
+
+Strategy: 
+
+LRU cache stand for Least Recently Used Cache. which evict least recently used entry.
+A class called LRUCache is created with a size and expiration time.
+Every time, an item is written or retrieved from the cache, its access time is updated and if the time
+since it was last accessed exceeds the expiration time, it is removed from the cache. 
+
+To record the cached items an OrderedDict is used (a dictionary where keys maintain the order in which they are inserted).
+For each get and set operation, the item is first poped, then insert back to update its timestamp.
+The element in the head of sequence is the least used item, thus the candidate to remove when the cache is full.
+
+Missing functionality: Geo distributed 
+
+These data structures are, hocal to the Python process and using a in-memory data structure disallows sharing the cached
+content in large-scale and distributed applications.
+
