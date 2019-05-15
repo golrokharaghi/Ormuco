@@ -1,0 +1,6 @@
+
+
+
+Strategy: If the maximum coordinate of one line is smaller than the minimum coordinate of the other line, 
+it means they do not have overlap. The function works for positive and negative values, and the order by
+which the coordinate are entered does not matter, for example line1 could be: (5,1) instead of (1,5)
